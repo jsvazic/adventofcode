@@ -7,16 +7,24 @@ object Day2 {
 
   private def split(s: String) = s.split("x").map(_.toInt)
 
+  private def partition(l: List[Int]): List[List[Int]] = {
+    def innerPart(l: List[Int], nl: List[List[Int]]): List[List[Int]] = {
+      if (l.size < 2) nl
+      else innerPart(l.tail, nl ++: (for (x <- l.tail) yield l.head :: x :: Nil))
+    }
+
+    innerPart(l, List[List[Int]]())
+  }
+
   def part1(input: String) = {
-    val Array(l, w, h) = split(input)
-    val areas = List[Int](l * w, w * h, h * l)
-    areas.sum * 2 + areas.min
+    val a = partition(split(input).toList).map(l => l.head * l.last)
+    a.sum * 2 + a.min
   }
 
   def part2(input: String): Int = {
-    val Array(l, w, h) = split(input)
-    val ribbon = List(l, w, h).sorted.take(2).sum * 2
-    val bow = l * w * h
+    val l = split(input)
+    val ribbon = l.sorted.take(2).sum * 2
+    val bow = (1 /: l.toList) {_*_}
     ribbon + bow
   }
 
