@@ -5,27 +5,14 @@ import java.io.InputStream
 import scala.annotation.tailrec
 import scala.io.Source
 
-/**
-  * Created by john on 01/12/15.
-  */
 object Day1 {
 
-  private def getInput() = {
-    // Open a stream for the file and read the content.
-    val stream : InputStream = getClass.getResourceAsStream("/day1/1_1.txt")
-    val input = Source.fromInputStream(stream).getLines().toList.head // Read just the first line.
-    input
-  }
-
-  def quiz1() = {
-    val input = getInput()
+  def part1(input: String) = {
     val left = input.filter(c => c == '(').length
     left - (input.length - left)
   }
 
-  def quiz2(): Int = {
-    val input = getInput()
-
+  def part2(input: String): Int = {
     @tailrec
     def recurse(idx: Int, count: Int, s: String): Int = {
       if (count < 0) idx
@@ -41,7 +28,9 @@ object Day1 {
   }
 
   def main(args: Array[String]) = {
-    println(s"Quiz 1 : $quiz1")
-    println(s"Quiz 2 : $quiz2")
+    val stream : InputStream = getClass.getResourceAsStream("/day1/1_1.txt")
+    val input = Source.fromInputStream(stream).getLines().toList.head // Read just the first line.
+    println(s"Part 1 : ${part1(input)}")
+    println(s"Part 2 : ${part2(input)}")
   }
 }
