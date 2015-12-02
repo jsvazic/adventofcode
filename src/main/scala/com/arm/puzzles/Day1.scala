@@ -28,7 +28,7 @@ object Day1 {
   }
 
   def main(args: Array[String]) = {
-    val stream : InputStream = getClass.getResourceAsStream("/day1/1_1.txt")
+    val stream : InputStream = getClass.getResourceAsStream("/day1/input.txt")
     val input = Source.fromInputStream(stream).getLines().toList.head // Read just the first line.
     println(s"Part 1 : ${part1(input)}")
     println(s"Part 2 : ${part2(input)}")
