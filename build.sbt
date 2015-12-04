@@ -10,4 +10,7 @@ lazy val root = (project in file(".")).
     name := "adventofcode"
   )
 
-libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
+libraryDependencies ++= List(
+  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
+  "commons-codec" % "commons-codec" % "1.10"
+)
