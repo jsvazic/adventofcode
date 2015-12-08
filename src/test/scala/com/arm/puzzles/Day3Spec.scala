@@ -3,19 +3,19 @@ package com.arm.puzzles
 class Day3Spec extends UnitSpec {
 
   "A Point at (0,0)" should "move up one point with a ^" in {
-    Point(0,0).move('^') should equal (Point(0, 1))
+    Day3.movePoint(Point(0,0), '^') should equal (Point(0, 1))
   }
 
   it should "move right one point with a >" in {
-    Point(0,0).move('>') should equal (Point(1, 0))
+    Day3.movePoint(Point(0,0), '>') should equal (Point(1, 0))
   }
 
   it should "move down one point with a v" in {
-    Point(0,0).move('v') should equal (Point(0, -1))
+    Day3.movePoint(Point(0,0), 'v') should equal (Point(0, -1))
   }
 
   it should "move left one point with a <" in {
-    Point(0,0).move('<') should equal (Point(-1, 0))
+    Day3.movePoint(Point(0,0), '<') should equal (Point(-1, 0))
   }
 
   "Santa's delivery instructions" should "result in delivering presents to 2 houses" in {

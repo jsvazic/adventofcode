@@ -4,22 +4,22 @@ import java.io.InputStream
 
 import scala.io.Source
 
-case class Point(x: Int, y: Int) {
-  def move(d: Char): Point = d.toLower match {
-    case '^' => Point(x, y + 1)
-    case '>' => Point(x + 1, y)
-    case 'v' => Point(x, y - 1)
-    case '<' => Point(x - 1, y)
-    case _ => throw new RuntimeException(s"Unknown movement character: $d")
-  }
-}
+case class Point(x: Int, y: Int)
 
 case class SantaState(h: Point, m: Map[Point, Int])
 
 object Day3 {
 
+  def movePoint(p: Point, d: Char): Point = d.toLower match {
+    case '^' => Point(p.x, p.y + 1)
+    case '>' => Point(p.x + 1, p.y)
+    case 'v' => Point(p.x, p.y - 1)
+    case '<' => Point(p.x - 1, p.y)
+    case _ => throw new RuntimeException(s"Unknown movement character: $d")
+  }
+
   private def move(ss: SantaState, d: Char) = {
-    val house = ss.h.move(d)
+    val house: Point = movePoint(ss.h, d)
     SantaState(house, ss.m + (house -> (ss.m.getOrElse(house, 0) + 1)))
   }
 
